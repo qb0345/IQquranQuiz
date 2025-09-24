@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" x-data>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Me - Quran IQ</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Custom Quran Theme */
+    body {
+      background: #ffffff;
+    }
+    .form-box {
+      background-color: #8B0D2B; /* Maroon */
+      border: 2px solid #FFD700; /* Gold */
+      transition: all 0.3s ease;
+    }
+    .form-box:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      transform: translateY(-4px);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col" style="background-image: url('images/bg.jpg'); background-size: cover; background-position: center;">
+
+  <!-- NAVBAR (same as homepage) -->
+  <header class="navbar bg-[#8B0D2B] text-yellow-400 flex items-center justify-between px-6 py-4 shadow">
+    <div class="flex items-center space-x-3">
+      <img src="images/logo.png" alt="Quran IQ Logo" class="h-12 w-12" />
+      <div>
+        <h1 class="text-2xl font-bold">QURAN IQ</h1>
+        <p class="text-sm italic">"Test Your Knowledge, Strengthen Your Iman"</p>
+      </div>
+    </div>
+    <nav class="space-x-6 text-lg">
+      <a href="index.html" class="hover:text-yellow-300">Quiz</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="font-bold text-yellow-400">Contact Me</a>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow max-w-2xl mx-auto px-6 py-12">
+    <h2 class="text-3xl font-bold mb-8 text-center text-black">Contact Me</h2>
+
+    <!-- Contact Form -->
+    <form id="contactForm" class="form-box rounded-lg p-8 text-yellow-400 font-bold">
+      <div class="mb-4 text-left">
+        <label for="name" class="block mb-2">Name:</label>
+        <input type="text" id="name" name="name" required 
+               class="w-full p-3 rounded text-black" />
+      </div>
+
+      <div class="mb-4 text-left">
+        <label for="email" class="block mb-2">Email:</label>
+        <input type="email" id="email" name="email" required 
+               class="w-full p-3 rounded text-black" />
+      </div>
+
+      <div class="mb-4 text-left">
+        <label for="message" class="block mb-2">Message:</label>
+        <textarea id="message" name="message" required 
+                  class="w-full p-3 rounded text-black"></textarea>
+      </div>
+
+      <button type="submit" 
+              class="bg-yellow-400 text-[#8B0D2B] px-6 py-2 rounded font-bold hover:bg-yellow-300">
+        Send
+      </button>
+    </form>
+
+    <p id="formMsg" class="mt-4 text-center"></p>
+  </main>
+
+ <!-- Footer -->
+ <footer class="flex items-center justify-between text-white px-6 py-4 shadow" 
+        style="background-color:#8B0D2B; border-bottom:none;">
+ 
+      <p class="text-sm italic" style="color:#FFD700;">
+   <p>&copy; 2025 Quran IQ. All Rights Reserved.</p>
+      </p>
+   </footer>
+
+  <!-- JS -->
+  <script>
+    // Contact Form Validation & Sanitization
+    const form = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let name = document.getElementById('name').value.trim();
+      let email = document.getElementById('email').value.trim();
+      let message = document.getElementById('message').value.trim();
+
+      // Sanitize
+      name = name.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+      message = message.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+      // Validate
+      if(name === "" || email === "" || message === "") {
+        formMsg.className = "mt-4 text-center text-red-600";
+        formMsg.textContent = "Please fill in all fields.";
+        return;
+      }
+
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if(!email.match(emailPattern)) {
+        formMsg.className = "mt-4 text-center text-red-600";
+        formMsg.textContent = "Please enter a valid email.";
+        return;
+      }
+
+      formMsg.className = "mt-4 text-center text-green-600";
+      formMsg.textContent = "Form submitted successfully!";
+      form.reset();
+    });
+  </script>
+</body>
+</html>
