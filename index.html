@@ -4,28 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quran IQ</title>
-
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
-    /* Custom Quran Theme */
     body {
       background: #ffffff;
     }
-    .quiz-box {
-      background-color: #8B0D2B; /* Maroon */
-      border: 2px solid #FFD700; /* Gold */
+    .quiz-box, .popular-quiz-box {
+      background-color: #8B0D2B;
+      border: 2px solid #FFD700;
       transition: all 0.3s ease;
+      font-weight: bold;
+      text-align: center;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      color: #FFD700;
+      display: block;
     }
-    .quiz-box:hover {
+    .quiz-box:hover, .popular-quiz-box:hover {
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
       transform: translateY(-4px);
+    }
+    .carousel-slide {
+      min-width: 100%;
+      padding: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      color: #8B0D2B;
+    }
+    .daily-ayat {
+      background-color: #bbf7d0;
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col" style="background-image: url('images/bg.jpg'); background-size: cover; background-position: center;">
-
 
   <!-- NAVBAR -->
   <header class="navbar bg-[#8B0D2B] text-yellow-400 flex items-center justify-between px-6 py-4 shadow">
@@ -39,7 +50,7 @@
     <nav class="space-x-6 text-lg">
       <a href="#" class="font-bold text-yellow-400">Quiz</a>
       <a href="about.html">About</a>
-       <a href="contact.html">Contact Me</a>
+      <a href="contact.html">Contact Me</a>
     </nav>
   </header>
 
@@ -47,51 +58,39 @@
   <main class="flex-grow max-w-5xl mx-auto px-6 py-12 text-center">
 
     <!-- Carousel -->
-<div class="relative w-full max-w-3xl mx-auto mb-10">
-  <div class="overflow-hidden rounded-lg shadow-lg">
-    <div class="flex transition-transform duration-500" id="carousel">
-      <div class="min-w-full bg-yellow-200 p-10 text-center text-[#8B0D2B] font-bold">
-        "Indeed, it is We who sent down the Qur'an and indeed, We will be its guardian."
-        (Al-Hijr: 9)
-      </div>
-      <div class="min-w-full bg-green-200 p-10 text-center text-[#8B0D2B] font-bold">
-        Test your Quran knowledge with our fun and engaging quizzes!
-      </div>
-      <div class="min-w-full bg-blue-200 p-10 text-center text-[#8B0D2B] font-bold">
-        Try the Full 30 Juz Quiz for the ultimate challenge!
-      </div>
-    </div>
-  </div>
-
-  <!-- Buttons -->
-  <button onclick="moveSlide(-1)" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-[#8B0D2B] text-white px-3 py-2 rounded-r">❮</button>
-  <button onclick="moveSlide(1)" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-[#8B0D2B] text-white px-3 py-2 rounded-l">❯</button>
+    <div class="relative w-full max-w-3xl mx-auto mb-10">
+      <div class="overflow-hidden rounded-lg shadow-lg">
+        <div class="flex transition-transform duration-500" id="carousel">
+        <div class="carousel-slide daily-ayat" id="dailyAyatSlide" style="height:300px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+  Loading daily verse...
 </div>
 
-    <h2 class="text-3xl font-bold mb-10 text-black">
-      Choose a Quiz <span class="text-yellow-300">to Begin</span>
-    </h2>
+          <div class="carousel-slide bg-yellow-200 flex items-center justify-center text-2xl font-bold text-center" style="height: 300px;">
+  "Indeed, it is We who sent down the Qur'an and indeed, We will be its guardian." (Al-Hijr: 9)
+</div>
 
-    <!-- QUIZ GRID -->
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-10">
-      <a href="quiz1-5.html" class="quiz-box rounded-lg p-6 text-center text-yellow-400 font-bold">
-        JUZ <br /> 1–5
-      </a>
-      <a href="quiz6-10.html" class="quiz-box rounded-lg p-6 text-center text-yellow-400 font-bold">
-        JUZ <br /> 6–10
-      </a>
-      <a href="quiz11-15.html" class="quiz-box rounded-lg p-6 text-center text-yellow-400 font-bold">
-        JUZ <br /> 11–15
-      </a>
-      <a href="quiz16-20.html" class="quiz-box rounded-lg p-6 text-center text-yellow-400 font-bold">
-        JUZ <br /> 21–25
-      </a>
-      <a href="quiz26-30.html" class="quiz-box rounded-lg p-6 text-center text-yellow-400 font-bold">
-        JUZ <br /> 26–30
-      </a>
-      <a href="quizfull30.html" class="quiz-box rounded-lg p-6 text-center text-yellow-400 font-bold">
-        FULL <br /> 30 JUZ
-      </a>
+         <div class="carousel-slide bg-yellow-200 flex items-center justify-center text-2xl font-bold text-center" style="height: 300px;">
+            Test your Quran knowledge with our fun and engaging quizzes!
+          </div>
+        </div>
+      </div>
+      <button onclick="moveSlide(-1)" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-[#8B0D2B] text-white px-3 py-2 rounded-r">❮</button>
+      <button onclick="moveSlide(1)" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-[#8B0D2B] text-white px-3 py-2 rounded-l">❯</button>
+    </div>
+
+    <!-- Most Popular Quiz -->
+    <div class="mb-6">
+      <a href="#" class="popular-quiz-box">Most Popular Quiz</a>
+    </div>
+
+    <!-- Quiz Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-10" id="quizGrid">
+      <a href="quiz1-5.html" class="quiz-box">JUZ <br> 1–5</a>
+      <a href="quiz6-10.html" class="quiz-box">JUZ <br> 6–10</a>
+      <a href="quiz11-15.html" class="quiz-box">JUZ <br> 11–15</a>
+      <a href="quiz16-20.html" class="quiz-box">JUZ <br> 21–25</a>
+      <a href="quiz26-30.html" class="quiz-box">JUZ <br> 26–30</a>
+      <a href="quizfull30.html" class="quiz-box">FULL <br> 30 JUZ</a>
     </div>
 
     <!-- Visitor Counter -->
@@ -99,16 +98,12 @@
   </main>
 
   <!-- Footer -->
- <footer class="flex items-center justify-between text-white px-6 py-4 shadow" 
-        style="background-color:#8B0D2B; border-bottom:none;">
- 
-      <p class="text-sm italic" style="color:#FFD700;">
-   <p>&copy; 2025 Quran IQ. All Rights Reserved.</p>
-      </p>
-      
-   </footer>
+  <footer class="flex items-center justify-between text-white px-6 py-4 shadow" style="background-color:#8B0D2B; border-bottom:none;">
+    <p class="text-sm italic" style="color:#FFD700;">&copy; 2025 Quran IQ. All Rights Reserved.</p>
+  </footer>
 
 <script>
+  // Carousel
   let currentSlide = 0;
   function moveSlide(step) {
     const carousel = document.getElementById("carousel");
@@ -116,31 +111,97 @@
     currentSlide = (currentSlide + step + totalSlides) % totalSlides;
     carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
   }
-
-  // Auto-slide every 5s
   setInterval(() => moveSlide(1), 5000);
-</script>
 
-   <script>
-  // Visitor Counter (count only 1st time user)
+  // Visitor Counter
   let isFirstVisit = localStorage.getItem("quranIQ_firstVisit");
   let totalVisits = localStorage.getItem("quranIQ_totalVisits");
-
-  if (!totalVisits) {
-    totalVisits = 0; // start from zero
-  } else {
-    totalVisits = parseInt(totalVisits);
-  }
-
+  totalVisits = totalVisits ? parseInt(totalVisits) : 0;
   if (!isFirstVisit) {
-    // First time user → increase total visitor count
     totalVisits += 1;
     localStorage.setItem("quranIQ_totalVisits", totalVisits);
     localStorage.setItem("quranIQ_firstVisit", "true");
   }
+  document.getElementById("visitorCounter").textContent = "👥 Unique Visitors: " + totalVisits;
 
-  document.getElementById("visitorCounter").textContent =
-    "👥 Unique Visitors: " + totalVisits;
+  // Most Popular Quiz (high-order method)
+  const quizLinks = [
+    "quiz1-5.html",
+    "quiz6-10.html",
+    "quiz11-15.html",
+    "quiz16-20.html",
+    "quiz26-30.html",
+    "quizfull30.html"
+  ];
+  let quizClicks = JSON.parse(localStorage.getItem("quizClicks") || "{}");
+  quizLinks.forEach(link => { if (!quizClicks[link]) quizClicks[link] = 0; });
+
+  function updateMostPopular() {
+    const mostPopular = Object.entries(quizClicks)
+      .reduce((max, entry) => entry[1] > max[1] ? entry : max, ["", 0]);
+    const card = document.querySelector(".popular-quiz-box");
+    card.href = mostPopular[0];
+    card.textContent = "Most Popular Quiz: " + (mostPopular[0].includes("full30") ? "FULL 30 JUZ" : mostPopular[0].replace(".html","").toUpperCase());
+  }
+  updateMostPopular();
+
+  document.querySelectorAll(".quiz-box").forEach(box => {
+    box.addEventListener("click", () => {
+      const href = box.getAttribute("href");
+      quizClicks[href] = (quizClicks[href] || 0) + 1;
+      localStorage.setItem("quizClicks", JSON.stringify(quizClicks));
+      updateMostPopular();
+    });
+  });
+
+  // Fetch API: Daily Ayat of the Day in carousel
+function loadDailyAyat() {
+  const todayKey = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  const dailySlide = document.getElementById("dailyAyatSlide");
+
+  // Check if already saved for today
+  let savedAyah = localStorage.getItem("dailyAyat-" + todayKey);
+  if (savedAyah) {
+    dailySlide.innerHTML = savedAyah;
+    return;
+  }
+
+  // Pick a random ayah ID
+  const randomAyah = Math.floor(Math.random() * 6236) + 1;
+  
+  // Fetch both Arabic and English in one request
+  fetch(`https://api.alquran.cloud/v1/ayah/${randomAyah}/editions/quran-uthmani,en.asad`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.data || data.data.length < 2) throw new Error("Invalid API data");
+      
+      const arabic = data.data.find(d => d.language === "ar").text;
+      const english = data.data.find(d => d.language === "en").text;
+
+      const content = `
+        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:0.5rem;">
+          <p style="font-size:1.25rem; font-weight:bold; margin:0;">📖 Ayat of the Day:</p>
+          <p style="font-size:1.75rem; font-weight:bold; margin:0;">${arabic}</p>
+          <p style="font-size:1.25rem; font-style:italic; margin:0;">${english}</p>
+        </div>
+      `;
+
+      dailySlide.innerHTML = content;
+      localStorage.setItem("dailyAyat-" + todayKey, content);
+    })
+    .catch(err => {
+      dailySlide.textContent = "Failed to load daily ayat.";
+      console.error(err);
+    });
+}
+
+// Call it after page loads
+loadDailyAyat();
+
+
+
+
+
 </script>
 
 </body>
